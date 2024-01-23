@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "accounts",
     "crispy_forms",
     "crispy_bootstrap4",
+    "vpn"
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 WSGI_APPLICATION = "vpn_service.wsgi.application"
 
+LOGIN_REDIRECT_URL = 'profile'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

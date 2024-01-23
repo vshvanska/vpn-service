@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from accounts.views import signup
+from vpn.views import ProfileView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
-    path("accounts/signup/", signup, name="signup"),
+    path("", include("django.contrib.auth.urls")),
+    path("signup/", signup, name="signup"),
+    path('profile/', ProfileView.as_view(), name='profile'),
 ]
