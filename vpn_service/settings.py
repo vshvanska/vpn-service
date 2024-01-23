@@ -20,9 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-(71d0o)ve&50qnkso20x294=mcobb@*s5kmtg9&uobxe0oi++%"
-)
+SECRET_KEY = "django-insecure-(71d0o)ve&50qnkso20x294=mcobb@*s5kmtg9&uobxe0oi++%"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,7 +41,7 @@ INSTALLED_APPS = [
     "accounts",
     "crispy_forms",
     "crispy_bootstrap4",
-    "vpn"
+    "vpn",
 ]
 
 MIDDLEWARE = [
@@ -78,7 +76,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 WSGI_APPLICATION = "vpn_service.wsgi.application"
 
-LOGIN_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = "profile"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -97,19 +95,16 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation."
-                "UserAttributeSimilarityValidator",
+        "UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-                "MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation." "MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-                "CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation." "CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-                "NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation." "NumericPasswordValidator",
     },
 ]
 

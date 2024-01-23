@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from accounts.views import signup
-from vpn.views import ProfileView
+from vpn.views import ProfileView, UserUpdateView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("django.contrib.auth.urls")),
-    path("signup/", signup, name="signup"),
-    path("profile/", include("vpn.urls", namespace="service")),
+    path("", ProfileView.as_view(), name="profile"),
+    path("users/update/<int:pk>", UserUpdateView.as_view(), name="user-update"),
 ]
+
+app_name = "service"

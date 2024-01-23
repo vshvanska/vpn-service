@@ -4,9 +4,7 @@ from django.db import models
 
 class Site(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="schemas"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="schemas"
     )
     name = models.CharField(max_length=64)
     url = models.URLField()

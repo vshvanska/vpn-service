@@ -11,7 +11,7 @@
       <p class="card-text">Username: {{user.username}}</p>
       <p class="card-text">Email: {{user.email}}</p>
       <p class="card-text">Full name: {{user.first_name}} {{user.last_name}}</p>
-      <a href="#edit" class="btn btn-primary">Edit Profile</a>
+      <a href="{% url 'service:user-update' pk=user.id %}" class="btn btn-primary">Edit Profile</a>
     </div>
   </div>
 
