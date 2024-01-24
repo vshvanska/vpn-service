@@ -28,9 +28,9 @@ from vpn.views import (
 
 urlpatterns = [
     path("", ProfileView.as_view(), name="profile"),
-    path("users/update/<int:pk>",
-         UserUpdateView.as_view(),
-         name="user-update"),
+    path(
+        "users/update/<int:pk>", UserUpdateView.as_view(), name="user-update"
+    ),
     path("sites/", SiteListView.as_view(), name="site-list"),
     path("sites/create/", SiteCreateView.as_view(), name="site-create"),
     path(

@@ -1,3 +1,5 @@
+import sys
+
 import requests
 
 from urllib.parse import urljoin
@@ -11,7 +13,7 @@ from django.views import View, generic
 from vpn.forms import SiteForm
 from vpn.html_modificator import modify_html
 from vpn.models import Site, Visit
-from vpn.statistics import generate_bar_chart
+from vpn.statistics import generate_bar_chart, generate_line_chart
 
 
 class ProfileView(LoginRequiredMixin, View):
@@ -59,34 +61,43 @@ def router_view(request, user_site_name, routes_on_original_site):
         routes_on_original_site=routes_on_original_site,
         start_page=start_page,
     )
-    visit.save()
+
     original_url = urljoin(site.url, routes_on_original_site)
     response = requests.get(original_url)
     original_html = response.text
     modified_html = modify_html(
-        original_html, user_site_name, routes_on_original_site, request
+        original_html, user_site_name, routes_on_original_site
     )
+
+    request_size = sys.getsizeof(request)
+    response_size = sys.getsizeof(modified_html)
+
+    visit.uploaded_data = request_size
+    visit.downloaded_data = response_size
+    visit.save()
+
     return HttpResponse(modified_html)
 
 
 def statistics_view(request):
+    user = request.user
 
     visit_data_transitions = (
-        Visit.objects.filter(user=request.user)
+        Visit.objects.filter(user=user)
         .exclude(start_page="http://127.0.0.1:8000/sites/")
         .values("site__name")
         .annotate(transitions=Count("id"))
     )
 
     labels_transitions = [
-        visit['site__name'] for visit in visit_data_transitions
+        visit["site__name"] for visit in visit_data_transitions
     ]
     values_transitions = [
         int(visit["transitions"]) for visit in visit_data_transitions
     ]
 
     visit_data_visits = (
-        Visit.objects.filter(user=request.user)
+        Visit.objects.filter(user=user)
         .values("site__name")
         .annotate(visits=Count("id"))
     )
@@ -95,14 +106,20 @@ def statistics_view(request):
     values_visits = [int(visit["visits"]) for visit in visit_data_visits]
 
     upload_data = (
-        Visit.objects.filter(user=request.user)
+        Visit.objects.filter(user=user)
         .values("site__name")
         .annotate(uploads=Sum("uploaded_data"))
     )
     download_data = (
-        Visit.objects.filter(user=request.user)
+        Visit.objects.filter(user=user)
         .values("site__name")
         .annotate(downloads=Sum("downloaded_data"))
+    )
+    activity_data = (
+        Visit.objects.filter(user=user)
+        .values("datetime__date")
+        .annotate(activity_count=Count("id"))
+        .order_by("datetime__date")
     )
 
     labels_uploads = [visit["site__name"] for visit in upload_data]
@@ -111,26 +128,39 @@ def statistics_view(request):
     labels_downloads = [visit["site__name"] for visit in download_data]
     values_downloads = [visit["downloads"] for visit in download_data]
 
+    labels_activity = [entry["datetime__date"] for entry in activity_data]
+    values_activity = [entry["activity_count"] for entry in activity_data]
+
     chart_data_transitions = generate_bar_chart(
         labels_transitions,
         values_transitions,
-        "Site visit statistics",
+        "Site Transactions statistics",
         "Site",
-        "Number of visits",
+        "Number of transactions",
     )
     chart_data_visits = generate_bar_chart(
         labels_visits,
         values_visits,
-        "Transition statistics",
+        "Site Visits statistics",
         "Site",
-        "Number of transitions",
+        "Number of visits",
     )
-    chart_data_uploads = generate_bar_chart(
-        labels_uploads, values_uploads, "Uploads by Site", "Site", "Data"
-    )
-    chart_data_downloads = generate_bar_chart(
-        labels_downloads, values_downloads, "Downloads by Site", "Site", "Data"
-    )
+    chart_data_uploads = generate_bar_chart(labels_uploads,
+                                            values_uploads,
+                                            "Uploads by Site",
+                                            "Site",
+                                            "Data, bytes")
+    chart_data_downloads = generate_bar_chart(labels_downloads,
+                                              values_downloads,
+                                              "Downloads by Site",
+                                              "Site",
+                                              "Data, bytes")
+
+    chart_data_activity = generate_line_chart(labels_activity,
+                                              values_activity,
+                                              "User Activity",
+                                              "Date",
+                                              "Activity Count")
 
     return render(
         request,
@@ -140,5 +170,6 @@ def statistics_view(request):
             "chart_data_visits": chart_data_visits,
             "chart_data_uploads": chart_data_uploads,
             "chart_data_downloads": chart_data_downloads,
+            "chart_data_activity": chart_data_activity,
         },
     )
