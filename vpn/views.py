@@ -4,6 +4,7 @@ import requests
 
 from urllib.parse import urljoin
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Sum
 from django.http import HttpResponse
@@ -57,6 +58,7 @@ class SiteDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("service:site-list")
 
 
+@login_required
 def router_view(request, user_site_name, routes_on_original_site):
     user = request.user
     site = get_object_or_404(Site, name=user_site_name, user=user)
@@ -83,6 +85,7 @@ def router_view(request, user_site_name, routes_on_original_site):
     return HttpResponse(modified_html)
 
 
+@login_required
 def statistics_view(request):
     user = request.user
 
