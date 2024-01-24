@@ -3,11 +3,9 @@ from django.db import models
 
 
 class Site(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="schemas"
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name="schemas")
     name = models.CharField(max_length=64)
     url = models.URLField()
 
@@ -19,12 +17,11 @@ class Site(models.Model):
 
 
 class Visit(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="visits"
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name="visits")
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    start_page = models.URLField()
     datetime = models.DateTimeField(auto_now_add=True)
     uploaded_data = models.BigIntegerField(default=0)
     downloaded_data = models.BigIntegerField(default=0)
