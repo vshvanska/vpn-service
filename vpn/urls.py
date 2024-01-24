@@ -1,5 +1,5 @@
 """
-URL configuration for vpn_service project.
+URL configuration for service project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -24,15 +24,15 @@ from vpn.views import (
     SiteCreateView,
     router_view,
     statistics_view,
+    SiteDeleteView,
 )
 
 urlpatterns = [
     path("", ProfileView.as_view(), name="profile"),
-    path(
-        "users/update/<int:pk>", UserUpdateView.as_view(), name="user-update"
-    ),
+    path("users/update/<int:pk>", UserUpdateView.as_view(), name="user-update"),
     path("sites/", SiteListView.as_view(), name="site-list"),
     path("sites/create/", SiteCreateView.as_view(), name="site-create"),
+    path("sites/delete/<int:pk>", SiteDeleteView.as_view(), name="site-delete"),
     path(
         "<str:user_site_name>/<path:routes_on_original_site>/",
         router_view,

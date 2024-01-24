@@ -34,10 +34,10 @@ class SiteListView(LoginRequiredMixin, generic.ListView):
     model = Site
     template_name = "service/site_list.html"
     context_object_name = "site_list"
+    paginate_by = 10
 
     def get_queryset(self):
-        return (Site.objects.filter(user=self.request.user)
-                .select_related("user"))
+        return Site.objects.filter(user=self.request.user).select_related("user")
 
 
 class SiteCreateView(LoginRequiredMixin, generic.CreateView):
@@ -49,6 +49,12 @@ class SiteCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class SiteDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Site
+    template_name = "service/site_confirm_delete.html"
+    success_url = reverse_lazy("service:site-list")
 
 
 def router_view(request, user_site_name, routes_on_original_site):
@@ -65,9 +71,7 @@ def router_view(request, user_site_name, routes_on_original_site):
     original_url = urljoin(site.url, routes_on_original_site)
     response = requests.get(original_url)
     original_html = response.text
-    modified_html = modify_html(
-        original_html, user_site_name, routes_on_original_site
-    )
+    modified_html = modify_html(original_html, user_site_name, routes_on_original_site)
 
     request_size = sys.getsizeof(request)
     response_size = sys.getsizeof(modified_html)
@@ -89,12 +93,8 @@ def statistics_view(request):
         .annotate(transitions=Count("id"))
     )
 
-    labels_transitions = [
-        visit["site__name"] for visit in visit_data_transitions
-    ]
-    values_transitions = [
-        int(visit["transitions"]) for visit in visit_data_transitions
-    ]
+    labels_transitions = [visit["site__name"] for visit in visit_data_transitions]
+    values_transitions = [int(visit["transitions"]) for visit in visit_data_transitions]
 
     visit_data_visits = (
         Visit.objects.filter(user=user)
@@ -145,22 +145,28 @@ def statistics_view(request):
         "Site",
         "Number of visits",
     )
-    chart_data_uploads = generate_bar_chart(labels_uploads,
-                                            values_uploads,
-                                            "Uploads by Site",
-                                            "Site",
-                                            "Data, bytes")
-    chart_data_downloads = generate_bar_chart(labels_downloads,
-                                              values_downloads,
-                                              "Downloads by Site",
-                                              "Site",
-                                              "Data, bytes")
+    chart_data_uploads = generate_bar_chart(
+        labels_uploads,
+        values_uploads,
+        "Uploads by Site",
+        "Site",
+        "Data, bytes"
+    )
+    chart_data_downloads = generate_bar_chart(
+        labels_downloads,
+        values_downloads,
+        "Downloads by Site",
+        "Site",
+        "Data, bytes"
+    )
 
-    chart_data_activity = generate_line_chart(labels_activity,
-                                              values_activity,
-                                              "User Activity",
-                                              "Date",
-                                              "Activity Count")
+    chart_data_activity = generate_line_chart(
+        labels_activity,
+        values_activity,
+        "User Activity",
+        "Date",
+        "Activity Count"
+    )
 
     return render(
         request,

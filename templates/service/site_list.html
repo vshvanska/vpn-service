@@ -20,6 +20,7 @@
             <td>{{ site.name }}</td>
             <td>{{ site.url }}</td>
             <td><a href="{% url 'service:router' user_site_name=site.name routes_on_original_site='/' %}" class="link-to-page">go to the site</a></td>
+            <td><a href="{% url 'service:site-delete' pk=site.id %}" class="link-to-page">×</a></td>
           </tr>
         {% endfor %}
       </tbody>

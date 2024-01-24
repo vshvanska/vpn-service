@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container border p-4 mx-auto bg-white col-md-4">
+  <h2>Delete Site</h2>
+  <p>Are you sure you want to delete the site "{{ object.name }}"?</p>
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Yes, delete" class="btn btn-primary">
+    <a href="{% url 'service:site-list' %}" class="btn btn-secondary">Cancel</a>
+  </form></div>
+{% endblock %}
