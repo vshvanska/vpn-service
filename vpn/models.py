@@ -12,18 +12,23 @@ class Site(models.Model):
     url = models.URLField()
 
     class Meta:
-        unique_together = ["user", "url"]
+        unique_together = ["user", "url", "name"]
 
     def __str__(self) -> str:
         return self.name
 
 
 class Visit(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="visits"
+    )
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now_add=True)
     uploaded_data = models.BigIntegerField(default=0)
     downloaded_data = models.BigIntegerField(default=0)
-    page_transitions = models.IntegerField(default=0)
+    routes_on_original_site = models.TextField()
 
     def __str__(self) -> str:
         return f"{self.datetime} {self.site.url}"

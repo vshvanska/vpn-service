@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from vpn.views import ProfileView, UserUpdateView, SiteListView, SiteCreateView
+from vpn.views import ProfileView, UserUpdateView, SiteListView, SiteCreateView, router_view
 
 urlpatterns = [
     path("", ProfileView.as_view(), name="profile"),
@@ -24,6 +24,7 @@ urlpatterns = [
     ),
     path("sites/", SiteListView.as_view(), name="site-list"),
     path("sites/create/", SiteCreateView.as_view(), name="site-create"),
+    path("<str:user_site_name>/<path:routes_on_original_site>/", router_view, name="router")
 ]
 
 app_name = "service"

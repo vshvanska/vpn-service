@@ -76,7 +76,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 WSGI_APPLICATION = "vpn_service.wsgi.application"
 
-LOGIN_REDIRECT_URL = "profile"
+LOGIN_REDIRECT_URL = "service:profile"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
