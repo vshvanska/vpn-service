@@ -1,0 +1,339 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "username": "test_user",
+      "password": "pbkdf2_sha256$720000$M4rtUnPSFPADrNb2qbtLjM$dA4er+Ro4YnKSH8ZyvXQN392GfT11XfFsDRHcq2dAww",
+      "email": "testuser@gmail.com",
+      "last_login": "2024-01-24T12:00:00Z",
+      "first_name": "John",
+      "last_name": "Golt",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-01-24T12:00:00Z"
+    }
+  },
+  {
+    "model": "vpn.site",
+    "pk": 1,
+    "fields": {
+      "name": "Library",
+      "url": "http://www.nbuv.gov.ua/",
+      "user": 1
+    }
+  },
+  {
+    "model": "vpn.site",
+    "pk": 2,
+    "fields": {
+      "name": "Djinni",
+      "url": "https://djinni.co/",
+      "user": 1
+    }
+  },
+  {
+    "model": "vpn.site",
+    "pk": 3,
+    "fields": {
+      "name": "Wiki",
+      "url": "https://uk.wikipedia.org/",
+      "user": 1
+    }
+  },
+  {
+    "model": "vpn.site",
+    "pk": 4,
+    "fields": {
+      "name": "Weather",
+      "url": "https://weather.in.ua/",
+      "user": 1
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 1,
+    "fields": {
+      "datetime": "2023-07-24 13:27:35.551453",
+      "uploaded_data": 56,
+      "downloaded_data": 552180,
+      "site": 4,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/sites/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 2,
+    "fields": {
+      "datetime": "2023-07-24 13:27:43.242416",
+      "uploaded_data": 56,
+      "downloaded_data": 23778,
+      "site": 4,
+      "routes_on_original_site": "/vinnickaja/4110",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Weather///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 3,
+    "fields": {
+      "datetime": "2023-08-24 13:27:53.005943",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 4,
+      "routes_on_original_site": "/search.html",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Weather//vinnickaja/4110/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 4,
+    "fields": {
+      "datetime": "2023-08-24 13:23:12.323033",
+      "uploaded_data": 56,
+      "downloaded_data": 552180,
+      "site": 3,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/sites/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 5,
+    "fields": {
+      "datetime": "2023-08-24 13:23:18.098376",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 3,
+      "routes_on_original_site": "/wiki/%D0%94%D0%BE%D0%B2%D1%96%D0%B4%D0%BA%D0%B0:%D0%AF%D0%BA_%D0%BE%D1%80%D1%96%D1%94%D0%BD%D1%82%D1%83%D0%B2%D0%B0%D1%82%D0%B8%D1%81%D1%8F_%D1%83_%D0%92%D1%96%D0%BA%D1%96%D0%BF%D0%B5%D0%B4%D1%96%D1%97/1",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Wiki///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 6,
+    "fields": {
+      "datetime": "2023-08-24 13:23:27.677583",
+      "uploaded_data": 56,
+      "downloaded_data": 23778,
+      "site": 3,
+      "routes_on_original_site": "/wiki/%D0%94%D0%BE%D0%B%D0%BA_%D0%BE%D0%BD%D1%82%D1%83%D0%B2%D0/3",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Wiki//wiki/%25D0:%25D0%25AF%25D0%25BA_%25D0%251%2583_%2597/1/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 7,
+    "fields": {
+      "datetime": "2023-09-24 13:23:31.192954",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 3,
+      "routes_on_original_site": "/wiki/%D0%94%D0%BE%D0%B20%B0%BA%D1%96%D0%BF%D0%B5%D0%B4%D1%96%D1%97",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Wiki//wiki/%25D0%94%25D05D0%1%25D0%25B4%25D1%2596%25D1%2597/3/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 8,
+    "fields": {
+      "datetime": "2023-09-24 13:21:50.193530",
+      "uploaded_data": 56,
+      "downloaded_data": 302432,
+      "site": 2,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/sites/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 9,
+    "fields": {
+      "datetime": "2023-09-24 13:21:55.983263",
+      "uploaded_data": 56,
+      "downloaded_data": 552180,
+      "site": 2,
+      "routes_on_original_site": "/jobs/?location=odesa",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Djinni///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 10,
+    "fields": {
+      "datetime": "2023-09-24 13:22:00.268349",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 2,
+      "routes_on_original_site": "/jobs/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Djinni//jobs/%3Flocation=odesa%20%20%20%20%20%20/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 11,
+    "fields": {
+      "datetime": "2023-09-24 13:22:05.179247",
+      "uploaded_data": 56,
+      "downloaded_data": 23778,
+      "site": 2,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Djinni//jobs//"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 12,
+    "fields": {
+      "datetime": "2023-10-24 13:22:12.262251",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 2,
+      "routes_on_original_site": "/salaries/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Djinni///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 13,
+    "fields": {
+      "datetime": "2023-10-24 13:15:44.623016",
+      "uploaded_data": 56,
+      "downloaded_data": 302432,
+      "site": 1,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/sites/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 14,
+    "fields": {
+      "datetime": "2023-11-24 13:15:45.507979",
+      "uploaded_data": 56,
+      "downloaded_data": 552180,
+      "site": 1,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/sites/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 15,
+    "fields": {
+      "datetime": "2023-11-24 13:16:45.238236",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 1,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/sites/"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 16,
+    "fields": {
+      "datetime": "2023-11-24 13:16:49.392254",
+      "uploaded_data": 56,
+      "downloaded_data": 23778,
+      "site": 1,
+      "routes_on_original_site": "/#fc1",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 17,
+    "fields": {
+      "datetime": "2023-11-24 13:16:52.761272",
+      "uploaded_data": 56,
+      "downloaded_data": 302432,
+      "site": 1,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 18,
+    "fields": {
+      "datetime": "2023-12-24 13:16:56.033765",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 1,
+      "routes_on_original_site": "/#fc1",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 19,
+    "fields": {
+      "datetime": "2023-12-24 13:16:57.435452",
+      "uploaded_data": 56,
+      "downloaded_data": 552180,
+      "site": 1,
+      "routes_on_original_site": "/",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 20,
+    "fields": {
+      "datetime": "2023-12-24 13:17:00.702419",
+      "uploaded_data": 56,
+      "downloaded_data": 23778,
+      "site": 1,
+      "routes_on_original_site": "/#fc1",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 21,
+    "fields": {
+      "datetime": "2024-01-24 13:17:01.817417",
+      "uploaded_data": 56,
+      "downloaded_data": 552180,
+      "site": 1,
+      "routes_on_original_site": "/#fc2",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  },
+  {
+    "model": "vpn.visit",
+    "pk": 22,
+    "fields": {
+      "datetime": "2024-01-24 13:17:06.172962",
+      "uploaded_data": 56,
+      "downloaded_data": 104520,
+      "site": 1,
+      "routes_on_original_site": "/#fc3",
+      "user": 1,
+      "start_page": "http://127.0.0.1:8000/Library///"
+    }
+  }
+]

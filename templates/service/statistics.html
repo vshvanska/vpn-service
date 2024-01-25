@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Statistics</h2>
+
+  <!-- Chart Section -->
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Visits by Site</h5>
+          <img src="data:image/png;base64,{{ chart_data_visits }}" alt="Visits Statistics">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Transitions by Site</h5>
+          <img src="data:image/png;base64,{{ chart_data_transitions }}" alt="Transitions Statistics">
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">User Activity per Day</h5>
+          <img src="data:image/png;base64,{{ chart_data_activity }}" alt="User Activity Chart">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Uploads by Site</h5>
+          <img src="data:image/png;base64,{{ chart_data_uploads }}" alt="Uploads Statistics">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Downloads by Site</h5>
+          <img src="data:image/png;base64,{{ chart_data_downloads }}" alt="Downloads Statistics">
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
